@@ -61,6 +61,11 @@ export default function AudioMixer() {
     const selectedFile = event.target.files?.[0];
     if (!selectedFile) return;
 
+    // validar file size if size > 200kb
+    if (selectedFile.size > 100000) {
+      alert('El archivo es demasiado grande, por favor selecciona un archivo más pequeño');
+      return;
+    }
     setFile(selectedFile);
     setIsProcessing(true);
     setProgress(0);
@@ -212,7 +217,7 @@ export default function AudioMixer() {
                 </CardHeader>
                 <CardContent className="p-4 md:p-6">
                   <div className="flex items-center space-x-4">
-                    <Input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept="audio/*" />
+                    <Input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept="audio/*"/>
                     <label htmlFor="file-upload" className="flex-1">
                       <div className="flex items-center justify-center h-32 border-2 border-dashed rounded-lg hover:bg-muted/50 cursor-pointer">
                         <div className="space-y-1 text-center">
@@ -223,7 +228,7 @@ export default function AudioMixer() {
                             </span>
                           </div>
                           <p className="text-xs text-muted-foreground">
-                            {file ? file.name : 'MP3, WAV hasta 10MB'}
+                            {file ? file.name : 'MP3, WAV hasta 100KB'}
                           </p>
                         </div>
                       </div>
