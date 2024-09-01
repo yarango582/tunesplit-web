@@ -9,7 +9,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Upload, Play, Pause, Volume2, VolumeX, Loader2, FastForward, Rewind, Music } from 'lucide-react';
 import { useAudioStore } from './audioStore';
 import { v4 as uuidv4 } from 'uuid';
-import { ThemeProvider } from './components/ui/theme-provider';
 import { useNavigate } from 'react-router-dom';
 
 const VITE_TUNESPLIT_API_URL = import.meta.env.VITE_TUNESPLIT_API_URL;
@@ -77,7 +76,7 @@ export default function AudioMixer() {
     setFile(selectedFile);
     setIsProcessing(true);
     setProgress(0);
-
+    console.log(file);
     try {
       const formData = new FormData();
       formData.append('audioFile', selectedFile);
